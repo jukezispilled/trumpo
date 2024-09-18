@@ -175,7 +175,7 @@ function App() {
         >
           <button
             onClick={handleButtonClick}
-            className="text-yellow-300 py-2 px-4 rounded transition duration-300 font-custom text-xl md:text-2xl"
+            className="text-[#FFFF00] py-2 px-4 rounded transition duration-300 font-custom text-xl md:text-2xl"
           >
             JOIN THE CULT
           </button>
