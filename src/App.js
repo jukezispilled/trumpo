@@ -1,7 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ReactAudioPlayer from 'react-audio-player';
 import Globe from './globe';
+
+const RainingEmojis = () => {
+  const [emojis, setEmojis] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newEmoji = {
+        id: Math.random(),
+        x: Math.random() * 100,
+        y: -10,
+        emoji: Math.random() > 0.5 ? '🐹' : '💰',
+      };
+      setEmojis((prevEmojis) => [...prevEmojis, newEmoji]);
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setEmojis((prevEmojis) => prevEmojis.slice(1));
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [emojis]);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-10">
+      {emojis.map((emoji) => (
+        <motion.div
+          key={emoji.id}
+          className="absolute text-4xl"
+          initial={{ x: `${emoji.x}vw`, y: '-10vh' }}
+          animate={{ y: '110vh' }}
+          transition={{ duration: 5, ease: 'linear' }}
+        >
+          {emoji.emoji}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(true);
@@ -16,9 +58,9 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center relative bg-slate-300 overflow-hidden">
-      <div className='absolute top-0 bg-[#000080] text-[#FFFF00] py-1 w-full text-center text-[9px] font-custom'>CA: updating...</div>
+      <div className='absolute top-0 bg-[#000080] text-[#FFFF00] py-1 w-full text-center text-[9px] font-custom z-20'>CA: updating...</div>
       
-      <div className='absolute top-7 right-3 flex items-center z-[50]'>
+      <div className='absolute top-7 right-3 flex items-center z-50'>
           <a href="https://x.com/trumpoworld" className='transition ease-in-out duration-150'>
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" className='size-10 md:size-11 md:hover:scale-105 transition ease-in-out duration-150 cursor-pointer' fill="yellow" viewBox="0 0 50 50">
               <path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
@@ -33,90 +75,93 @@ function App() {
 
       {startAnimation && (
         <>
+          <RainingEmojis />
           <Globe />
-          {/* Curved text for medium screens and up */}
-          <svg className="absolute top-[45px] md:-top-7 left-0 w-full h-1/3 pointer-events-none" viewBox="0 0 100 33">
-            <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <path
-              id="curve"
-              fill="transparent"
-              d="M 0 33 Q 50 0 100 33"
-            />
-            {/* For medium and larger screens */}
-            <motion.text
-              fill="yellow"
-              fontSize="6"
-              className="stadium-light-text font-custom hidden md:block" 
-              filter="url(#glow)"
-              initial={{ opacity: 0.8 }}
-              animate={{
-                opacity: [0.8, 1, 0.8],
-                transition: {
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: 'mirror',
-                },
-              }}
-            >
-              <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
-                TRUMPO WORLD
-              </textPath>
-            </motion.text>
+          <div className="">
+            {/* Curved text for medium screens and up */}
+            <svg className="absolute top-[45px] md:-top-7 left-0 w-full h-1/3 pointer-events-none" viewBox="0 0 100 33">
+              <defs>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path
+                id="curve"
+                fill="transparent"
+                d="M 0 33 Q 50 0 100 33"
+              />
+              {/* For medium and larger screens */}
+              <motion.text
+                fill="yellow"
+                fontSize="6"
+                className="stadium-light-text font-custom hidden md:block" 
+                filter="url(#glow)"
+                initial={{ opacity: 0.8 }}
+                animate={{
+                  opacity: [0.8, 1, 0.8],
+                  transition: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  },
+                }}
+              >
+                <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
+                  TRUMPO WORLD
+                </textPath>
+              </motion.text>
 
-            {/* For small screens: TRUMPO and WORLD stacked but following the arc */}
-            <motion.text
-              fill="yellow"
-              fontSize="6"
-              className="stadium-light-text font-custom md:hidden text-[12px]"
-              filter="url(#glow)"
-              initial={{ opacity: 0.8 }}
-              animate={{
-                opacity: [0.8, 1, 0.8],
-                transition: {
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: 'mirror',
-                },
-              }}
-            >
-              <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
-                TRUMPO
-              </textPath>
-            </motion.text>
-            <motion.text
-              fill="yellow"
-              fontSize="6"
-              className="stadium-light-text font-custom md:hidden translate-y-3 text-[10px]"
-              filter="url(#glow)"
-              initial={{ opacity: 0.8 }}
-              animate={{
-                opacity: [0.8, 1, 0.8],
-                transition: {
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: 'mirror',
-                },
-              }}
-            >
-              <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
-                WORLD
-              </textPath>
-            </motion.text>
-          </svg>
+              {/* For small screens: TRUMPO and WORLD stacked but following the arc */}
+              <motion.text
+                fill="yellow"
+                fontSize="6"
+                className="stadium-light-text font-custom md:hidden text-[12px]"
+                filter="url(#glow)"
+                initial={{ opacity: 0.8 }}
+                animate={{
+                  opacity: [0.8, 1, 0.8],
+                  transition: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  },
+                }}
+              >
+                <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
+                  TRUMPO
+                </textPath>
+              </motion.text>
+              <motion.text
+                fill="yellow"
+                fontSize="6"
+                className="stadium-light-text font-custom md:hidden translate-y-3 text-[10px]"
+                filter="url(#glow)"
+                initial={{ opacity: 0.8 }}
+                animate={{
+                  opacity: [0.8, 1, 0.8],
+                  transition: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  },
+                }}
+              >
+                <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
+                  WORLD
+                </textPath>
+              </motion.text>
+            </svg>
+          </div>
         </>
       )}
 
       {isModalOpen && (
         <motion.div
-          className="absolute bg-[#000080] p-3 text-center"
+          className="absolute bg-[#000080] p-3 text-center z-30"
           animate={{ 
             opacity: 1, 
             scale: [1, 1.03, 1]  // Pulsing effect
@@ -140,7 +185,7 @@ function App() {
       <motion.img
         src="tl.png"
         alt="PL"
-        className="absolute bottom-0 -left-10 h-[80%] hidden md:block"
+        className="absolute bottom-0 -left-10 h-[80%] hidden md:block z-20"
         initial={{ y: '100vh' }}
         animate={startAnimation ? { y: '0vh', transition: { duration: 2, ease: 'easeOut' } } : {}}
         whileInView={{
@@ -153,7 +198,7 @@ function App() {
       <motion.img
         src="tr.png"
         alt="PR"
-        className="absolute bottom-0 md:-right-5"
+        className="absolute bottom-0 md:-right-5 z-20"
         initial={{ y: '100vh' }}
         animate={startAnimation ? { y: '0vh', transition: { duration: 2, ease: 'easeOut' } } : {}}
         whileInView={{
