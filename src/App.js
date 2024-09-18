@@ -116,7 +116,7 @@ function App() {
 
       {isModalOpen && (
         <motion.div
-          className="absolute bg-white p-3 text-center"
+          className="absolute bg-yellow-300 p-3 text-center"
           animate={{ 
             opacity: 1, 
             scale: [1, 1.03, 1]  // Pulsing effect
