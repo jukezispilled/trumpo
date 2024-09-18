@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center relative bg-slate-300 overflow-hidden">
-      <div className='absolute top-0 bg-[#000080] text-yellow-300 py-1 w-full text-center text-[9px] font-custom'>CA: updating...</div>
+      <div className='absolute top-0 bg-[#000080] text-[#FFFF00] py-1 w-full text-center text-[9px] font-custom'>CA: updating...</div>
       
       <div className='absolute top-7 right-3 flex items-center z-[50]'>
           <a href="https://x.com/trumpoworld" className='transition ease-in-out duration-150'>
@@ -54,7 +54,7 @@ function App() {
             <motion.text
               fill="yellow"
               fontSize="6"
-              className="stadium-light-text font-custom hidden md:block"
+              className="stadium-light-text font-custom hidden md:block" 
               filter="url(#glow)"
               initial={{ opacity: 0.8 }}
               animate={{
