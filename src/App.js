@@ -116,7 +116,7 @@ function App() {
 
       {isModalOpen && (
         <motion.div
-          className="absolute bg-yellow-300 p-3 text-center"
+          className="absolute bg-[#000080] p-3 text-center"
           animate={{ 
             opacity: 1, 
             scale: [1, 1.03, 1]  // Pulsing effect
@@ -130,7 +130,7 @@ function App() {
         >
           <button
             onClick={handleButtonClick}
-            className="text-amber-600 py-2 px-4 rounded transition duration-300 font-custom text-xl md:text-2xl"
+            className="text-yellow-300 py-2 px-4 rounded transition duration-300 font-custom text-xl md:text-2xl"
           >
             JOIN THE CULT
           </button>
