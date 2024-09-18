@@ -15,8 +15,8 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center relative bg-black overflow-hidden">
-      <div className='absolute top-0 bg-yellow-300 py-1 w-full text-center text-[9px] font-custom'>CA: updating...</div>
+    <div className="h-screen w-screen flex justify-center items-center relative bg-slate-300 overflow-hidden">
+      <div className='absolute top-0 bg-[#000080] text-yellow-300 py-1 w-full text-center text-[9px] font-custom'>CA: updating...</div>
       
       <div className='absolute top-7 right-3 flex items-center z-[50]'>
           <a href="https://x.com/trumpoworld" className='transition ease-in-out duration-150'>
