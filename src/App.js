@@ -21,7 +21,7 @@ function App() {
         <>
           <Globe />
           {/* Curved text for medium screens and up */}
-          <svg className="absolute top-[50px] md:-top-7 left-0 w-full h-1/3 pointer-events-none" viewBox="0 0 100 33">
+          <svg className="absolute top-[45px] md:-top-7 left-0 w-full h-1/3 pointer-events-none" viewBox="0 0 100 33">
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
