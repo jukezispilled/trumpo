@@ -61,7 +61,7 @@ function App() {
   return (
     <div className=''>
       <div className="h-screen w-screen flex justify-center items-center relative bg-slate-300 overflow-hidden">
-        <div className='absolute top-0 bg-[#000080] text-[#FFFF00] py-1 w-full text-center text-[6px] md:text-[9px] font-custom z-20'>CA: updating...</div>
+        <div className='absolute top-0 bg-[#000080] text-[#FFFF00] py-1 w-full text-center text-[6px] md:text-[9px] font-custom z-20'>CA: 7rnShc1KoLvUL2KiE4zZbFAApiaUFKxaKAF4R7oapump</div>
         
         <div className='absolute top-7 right-3 flex items-center z-50'>
             <a href="https://x.com/trumpoworld" className='transition ease-in-out duration-150'>
