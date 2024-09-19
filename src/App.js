@@ -219,7 +219,7 @@ function App() {
         )}
       </div>
       <Marquee speed={150}>
-        <div className='py-2 bg-[#FFFF00] font-custom'>
+        <div className='py-2 bg-[#FFFF00] font-custom text-amber-600'>
           &nbsp;TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 TRUMPO WORLD ORDER 🌐 
         </div>
       </Marquee>
